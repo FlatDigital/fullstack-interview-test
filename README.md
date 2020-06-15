@@ -49,3 +49,5 @@ We also care about being able to run your test without significant effort on our
 - Your code has tests.
 
 If you come across any questions or anything we didn't cover on this README, feel free to reach out to us and we'll get you an answer as soon as possible. Happy coding!
+
+<3
