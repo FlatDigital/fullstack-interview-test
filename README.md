@@ -1,3 +1,51 @@
+## Requirements
+
+### 1. Flask
+```
+    pip install flask
+```
+### 2. Flask-SQLAlchemy
+```
+    pip install Flask-SQLAlchemy
+```
+### 3. Psycopg2-binary
+```
+    pip install psycopg2-binary
+```
+### 4. PyGithub
+```
+    pip install PyGithub
+```
+### 5. Requests
+```
+    pip install requests
+```
+### 6. Yaml
+```
+    pip install PyYAML
+```
+
+### 7. db in postgreSQL
+ You'll have to create a db in postgreSQL and indicate it int the files create_tables.py and fill_tables.py
+
+```
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:postgres@localhost:5432/git_test_1' # postgresql://<user_name>:<password>@<host>:<port>/<db_name>
+```
+
+### 8. File with credentials to log-in in GitHub
+
+you must create a file inside *fullstack-interview-test* directory:
+
+the content must be:
+```
+creds:
+  user: enter_here_your_username_in_github
+  password: enter_here_your_password
+```
+
+**use the name creds.yaml or the code will not run. If you do so, your information will be safe; git ignores all .yaml files.** 
+**if you choose another name you'll have to modified config.py file inside fullstack-interview-test directory**
+
 # fullstack-interview-test
 Interview test for fullstack Software Engineers
 
@@ -49,3 +97,7 @@ We also care about being able to run your test without significant effort on our
 - Your code has tests.
 
 If you come across any questions or anything we didn't cover on this README, feel free to reach out to us and we'll get you an answer as soon as possible. Happy coding!
+
+
+
+

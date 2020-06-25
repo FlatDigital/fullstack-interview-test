@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Branches
+{% endblock %}
+
+{% block body %}
+    <h1>All branches</h1>
+    <ul>
+        {% for branch in branches %}
+            <li>
+                {{ branch.id }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}"> Return to index</a></br>
+{% endblock %}
