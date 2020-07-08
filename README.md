@@ -20,7 +20,7 @@ The main objects we'll be dealing with are:
 - Branches
 - PRs
 
-We'd like to see a visual representation of the git history of this repo as a web-app, using the API previously described. To be specific, we'd like to see the following:
+We'd like to see a visual representation of the git history of this repo as a **JS web-app**, using the API previously described. To be specific, we'd like to see the following:
 - A view where we can see the existing branches
 - A branch detail view where we can see all the commits to one specific branch, with commit messages, authors and timestamps.
 - A commit detail view where we can see the commit message, timestamp, number of files changed and author names / emails.
