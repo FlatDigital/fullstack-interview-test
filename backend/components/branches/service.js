@@ -1,6 +1,9 @@
-const Service = () => {
+const { branchesDto } = require('./branches.dto');
+
+const Service = (model) => {
   const findAll = async (repositoryName) => {
-    return repositoryName;
+    const branches = await model.findAllBranches(repositoryName);
+    return branchesDto(branches);
   };
 
   return {
