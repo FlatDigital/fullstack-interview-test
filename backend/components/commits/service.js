@@ -6,8 +6,14 @@ const Service = (model) => {
     return commitsDto(commits);
   };
 
+  const findOne = async (repositoryName, commitSha) => {
+    const commit = await model.findOneCommit(repositoryName, commitSha);
+    return commit;
+  };
+
   return {
     findAll,
+    findOne,
   };
 };
 

@@ -12,8 +12,19 @@ const Controller = (service) => {
     }
   };
 
+  const findOne = async (req, res, next) => {
+    const { repositoryName, commitSha } = req.params;
+    try {
+      const retrievedCommit = await service.findOne(repositoryName, commitSha);
+      return res.status(200).json(retrievedCommit);
+    } catch (error) {
+      return next(error);
+    }
+  };
+
   return {
     findAll,
+    findOne,
   };
 };
 

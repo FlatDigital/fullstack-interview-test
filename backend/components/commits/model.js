@@ -3,8 +3,14 @@ const Model = (GitHubRepository) => {
     const ghRepo = GitHubRepository(repositoryName);
     return await ghRepo.commits();
   };
+
+  const findOneCommit = async (repositoryName, commitSha) => {
+    const ghRepo = GitHubRepository(repositoryName);
+    return await ghRepo.commit(commitSha);
+  };
   return {
     findAllCommits,
+    findOneCommit,
   };
 };
 
