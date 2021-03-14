@@ -10,6 +10,6 @@ const model = Model(githubClient);
 const service = Service(model);
 const { findAll } = Controller(service);
 
-router.get('/:repositoryName/branches', findAll);
+router.get('/:author/:repositoryName/branches', findAll);
 
 module.exports = router;

@@ -1,8 +1,10 @@
 const Controller = (service) => {
   const findAll = async (req, res, next) => {
-    const { repositoryName } = req.params;
+    const { author, repositoryName } = req.params;
     try {
-      const retrievedBranches = await service.findAll(repositoryName);
+      const retrievedBranches = await service.findAll(
+        `${author}/${repositoryName}`
+      );
       return res.status(200).json(retrievedBranches);
     } catch (error) {
       return next(error);

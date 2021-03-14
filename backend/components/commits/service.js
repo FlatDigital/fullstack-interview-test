@@ -1,4 +1,4 @@
-const { commitsDto } = require('./commits.dto');
+const { commitsDto, commitDto } = require('./commits.dto');
 
 const Service = (model) => {
   const findAll = async (repositoryName, branchName) => {
@@ -8,7 +8,7 @@ const Service = (model) => {
 
   const findOne = async (repositoryName, commitSha) => {
     const commit = await model.findOneCommit(repositoryName, commitSha);
-    return commit;
+    return commitDto(commit);
   };
 
   return {

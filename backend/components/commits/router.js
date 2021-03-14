@@ -10,7 +10,10 @@ const model = Model(githubClient);
 const service = Service(model);
 const { findAll, findOne } = Controller(service);
 
-router.get('/:repositoryName/branches/:branchName/commits', findAll);
-router.get('/:repositoryName/branches/:branchName/commits/:commitSha', findOne);
+router.get('/:author/:repositoryName/branches/:branchName/commits', findAll);
+router.get(
+  '/:author/:repositoryName/branches/:branchName/commits/:commitSha',
+  findOne
+);
 
 module.exports = router;
