@@ -15,7 +15,7 @@ export const useRequest = (request, params) => {
         setError(err);
       })
       .finally(() => setLoading(false));
-  }, [request, params]);
+  }, []);
 
   return { data, loading, error };
 };

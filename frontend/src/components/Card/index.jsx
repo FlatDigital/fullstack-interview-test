@@ -6,7 +6,7 @@ const Card = ({ commit, name }) => {
   return (
     <div>
       <p>{name}</p>
-      <Link to={`/commit/${commit}`} />
+      <Link to={`/commit/${commit}`}>Ver Commits</Link>
     </div>
   );
 };
