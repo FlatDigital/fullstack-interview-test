@@ -10,9 +10,9 @@ export const getBranches = async (repositoryName) => {
     data: [
       {
         sha: '13',
-        name: 'Branch'
-      }
-    ]
+        name: 'Branch',
+      },
+    ],
   };
   return res.data;
 };
@@ -26,10 +26,9 @@ export const getcommits = async ({ repositoryName, branchName }) => {
         message: 'feat: Github block me',
         date: '2020-07-08T22:41:06Z',
         verified: true,
-        sha: '13'
-      }
-    ]
-  }
+        sha: '13',
+      },
+    ],
+  };
   return res.data;
 };
-

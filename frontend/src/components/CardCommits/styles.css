@@ -1,0 +1,25 @@
+.cardCommits {
+  max-width: 300px;
+  border-radius: 16px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.cardCommits p {
+  margin-bottom: 10px;
+}
+
+.cardCommits__author {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.cardCommits__message {
+  font-weight: 500;
+}
+
+.cardCommits a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: orange;
+}

@@ -1,0 +1,18 @@
+.cardBranch {
+  max-width: 300px;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.cardBranch h3 {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.cardBranch a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: orange;
+}

@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-const Card = ({ commit, name }) => {
+const Card = ({ commit, name, to }) => {
   return (
-    <div>
-      <p>{name}</p>
-      <Link to={`/commit/${commit}`}>Ver Commits</Link>
+    <div className="cardBranch">
+      <h3>{name}</h3>
+      <Link to={to}>Ver Commits</Link>
     </div>
   );
 };
