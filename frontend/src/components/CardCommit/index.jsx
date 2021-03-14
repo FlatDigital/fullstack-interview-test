@@ -4,24 +4,41 @@ import { getDate } from '../../utils/index';
 import './styles.css';
 
 const CardCommit = ({ data }) => {
-  const { author, message, date, total, additions, deletions, files } = data;
+  const {
+    author,
+    message,
+    date,
+    total,
+    additions,
+    deletions,
+    verified,
+    files,
+  } = data;
   return (
-    <div className="cardCommit">
-      <div className="cardCommit__header">
-        <h2 className="cardCommit__author">{author}</h2>
-        <p className="cardCommit_message">{message}</p>
-        <p>{getDate(date)}</p>
-        <p>
-          Mostrando {total} archivos cambiados con {additions} agregados y{' '}
-          {deletions} eliminados
+    <>
+      <div className="cardCommit card">
+        <div>
+          <p className="cardCommits__message">{message}</p>
+          <p>
+            <span className="cardCommits__author">{author}</span>
+            <span className="cardCommits__date">
+              {' '}
+              commited on {getDate(date)}
+            </span>
+          </p>
+          <p className="cardCommits__changes">
+            Showing <span>{total}</span> with <span>{additions}</span> additions
+            and <span>{deletions}</span> deletions.
+          </p>
+        </div>
+        <p className={`cardCommits__${verified ? 'verified' : 'unverified'}`}>
+          {verified ? 'Verified' : 'Unverified'}
         </p>
       </div>
-      <div>
-        {files.map((file) => (
-          <FileCommit file={file} />
-        ))}
-      </div>
-    </div>
+      {files.map((file) => (
+        <FileCommit file={file} />
+      ))}
+    </>
   );
 };
 export default CardCommit;

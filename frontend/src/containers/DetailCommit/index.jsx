@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { CardCommit } from '../../components';
+import { CardCommit, Loading } from '../../components';
 import { useRequest } from '../../hooks';
 import { getcommit } from '../../api';
 import './styles.css';
@@ -15,8 +15,15 @@ const DetailCommit = () => {
   });
 
   return (
-    <div className="deatilCommit">
-      {loading && <h1>Cargando</h1>}
+    <div className="deatilCommit branches">
+      <h1 className="braches__title">
+        <p>
+          {author}/{repositoryName}
+        </p>
+        <p>branch: {branchName}</p>
+        <p>commit: {commitSha}</p>
+      </h1>
+      {loading && !data && <Loading />}
       {error && <p>{error.message}</p>}
       {data && <CardCommit data={data} />}
     </div>

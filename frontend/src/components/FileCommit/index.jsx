@@ -58,7 +58,7 @@ const FileCommit = ({ file }) => {
   });
 
   return (
-    <div className="fileCommit">
+    <div className="fileCommit card">
       <p className="fileCommit__file">{file.filename}</p>
 
       <table className="fileCommit__table">

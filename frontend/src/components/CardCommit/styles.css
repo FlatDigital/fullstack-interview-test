@@ -1,21 +1,15 @@
-.cardCommit__header {
-  border: solid 1px #a1a1a1;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
+.cardCommit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.cardCommit__header p,
-.cardCommit__header h2 {
-  margin-bottom: 10px;
+.cardCommits__changes {
+  margin-top: 2px;
+  color: #fff;
+  font-size: 13px;
 }
 
-.cardcommit__author {
-  font-size: 21px;
-}
-
-.cardcommit_message {
-  font-weight: 500;
+.cardCommits__changes > span {
+  color: #58a6ff;
 }

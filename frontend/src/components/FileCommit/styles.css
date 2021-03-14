@@ -1,35 +1,37 @@
 .fileCommit {
-  border: solid 1px #a1a1a1;
-  border-radius: 16px;
-  margin-bottom: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  overflow: hidden;
+  max-width: 1200px;
+  padding: 0;
 }
 
 .fileCommit__file {
-  padding: 16px;
-  background-color: #fafafa;
+  border-bottom: solid 1px #30363d;
+  padding: 8px 16px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
 }
 
-.fileCommit__table {
+.fileCommit__table,
+.fileCommit__body,
+.fileCommit__row {
   display: flex;
   width: 100%;
-  padding: 16px;
 }
 
 .fileCommit__body {
-  display: flex;
   flex-direction: column;
 }
 
 .fileCommit__row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
 }
 
 .fileCommit__row td {
   display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #c9d1d9;
+  overflow: hidden;
 }
 
 .fileCommit__row td span {
@@ -38,16 +40,17 @@
 
 .fileCommit__row td span:first-child {
   width: 30px;
-  margin-right: 20px;
+  margin-right: 10px;
   text-align: right;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .fileCommit__row .added-line,
 .fileCommit__row .added-line span:first-child {
-  background-color: rgba(0, 255, 0, 0.3);
+  background-color: rgba(46, 160, 67, 0.3);
 }
 
 .fileCommit__row .removed-line,
 .fileCommit__row .removed-line span:first-child {
-  background-color: rgba(255, 0, 0, 0.3);
+  background-color: rgba(218, 54, 51, 0.3);
 }
