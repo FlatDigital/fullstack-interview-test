@@ -12,9 +12,9 @@ const GitHubRepository = (repositoryName) => {
       });
     });
 
-  const commits = () =>
+  const commits = (branchName) =>
     new Promise((resolve, reject) => {
-      ghRepo.commits((err, data) => {
+      ghRepo.commits({ sha: branchName }, (err, data) => {
         if (err) return reject(err);
         return resolve(data);
       });

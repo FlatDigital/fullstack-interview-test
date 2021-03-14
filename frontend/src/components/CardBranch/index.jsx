@@ -2,13 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-const Card = ({ commit, name, to }) => {
+const CardBranch = ({ commit, name, to }) => {
   return (
     <div className="cardBranch">
-      <h3>{name}</h3>
-      <Link to={to}>Ver Commits</Link>
+      <Link to={to}>{name}</Link>
     </div>
   );
 };
 
-export default Card;
+export default CardBranch;

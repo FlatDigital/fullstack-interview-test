@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Card } from '../../components';
+import { CardBranch, Loading } from '../../components';
 import { useRequest } from '../../hooks';
 import { getBranches } from '../../api';
 import './styles.css';
@@ -14,12 +14,15 @@ const Branches = () => {
 
   return (
     <div className="branches">
-      <h1 className="braches__title">{repositoryName}</h1>
-      {loading && <h1>Cargando</h1>}
+      <h1 className="braches__title">
+        {author}/{repositoryName}
+      </h1>
+      {loading && !data && <Loading />}
       {error && <p>{error.message}</p>}
       {data &&
         data.map(({ commit, name }) => (
-          <Card
+          <CardBranch
+            key={commit}
             commit={commit}
             name={name}
             to={`/${author}/${repositoryName}/${name}`}
