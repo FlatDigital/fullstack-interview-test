@@ -1,0 +1,53 @@
+.fileCommit {
+  border: solid 1px #a1a1a1;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.fileCommit__file {
+  padding: 16px;
+  background-color: #fafafa;
+}
+
+.fileCommit__table {
+  display: flex;
+  width: 100%;
+  padding: 16px;
+}
+
+.fileCommit__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.fileCommit__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.fileCommit__row td {
+  display: flex;
+}
+
+.fileCommit__row td span {
+  padding: 2px 4px;
+}
+
+.fileCommit__row td span:first-child {
+  width: 30px;
+  margin-right: 20px;
+  text-align: right;
+}
+
+.fileCommit__row .added-line,
+.fileCommit__row .added-line span:first-child {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+.fileCommit__row .removed-line,
+.fileCommit__row .removed-line span:first-child {
+  background-color: rgba(255, 0, 0, 0.3);
+}

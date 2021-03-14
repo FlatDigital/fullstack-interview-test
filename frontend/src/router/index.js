@@ -1,4 +1,4 @@
-import { Home, Branches, Commits } from '../containers';
+import { Home, Branches, Commits, DetailCommit } from '../containers';
 
 export const ROUTER = [
   { exact: true, path: '/', component: Home },
@@ -11,6 +11,6 @@ export const ROUTER = [
   {
     exact: true,
     path: '/:author/:repositoryName/:branchName/:commitSha',
-    component: Commits,
+    component: DetailCommit,
   },
 ];
