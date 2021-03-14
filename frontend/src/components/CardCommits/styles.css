@@ -1,10 +1,50 @@
 .cardCommits {
-  max-width: 300px;
-  border-radius: 16px;
-  padding: 16px;
-  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.cardCommits__message {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 5px;
+  transition: all 0.2s;
+}
+
+.cardCommits__message:hover {
+  color: #58a6ff;
+  text-decoration: underline;
+}
+
+.cardCommits__author {
+  color: #fff;
+  font-size: 13px;
+}
+
+.cardCommits__date {
+  color: #8b949e;
+  font-size: 13px;
+}
+
+.cardCommits__verified,
+.cardCommits__unverified {
+  padding: 4px 8px;
+  border-radius: 8px;
+  line-height: 22px;
+}
+.cardCommits__unverified {
+  color: #e3b341;
+  border: solid 1px rgba(187, 128, 9, 0.4);
+}
+
+.cardCommits__verified {
+  color: #3fb950;
+  background-color: rgba(68, 185, 80, 0.1);
+  border: solid 1px rgba(68, 185, 80, 0.4);
+}
+
+/*
 .cardCommits p {
   margin-bottom: 10px;
 }
@@ -23,3 +63,4 @@
   text-transform: uppercase;
   color: orange;
 }
+*/

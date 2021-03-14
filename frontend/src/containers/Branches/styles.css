@@ -5,6 +5,7 @@
   height: 100%;
   padding: 30px;
   background-color: #0d1117;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 

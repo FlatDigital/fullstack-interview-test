@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { CardCommits } from '../../components';
+import { CardCommits, Loading } from '../../components';
 import { useRequest } from '../../hooks';
 import { getcommits } from '../../api';
 
@@ -14,14 +14,22 @@ const Commits = () => {
 
   return (
     <div className="branches">
-      {loading && <h1>Cargando</h1>}
+      <h1 className="braches__title">
+        <p>
+          {author}/{repositoryName}
+        </p>
+        <p>branch: {branchName}</p>
+      </h1>
+      {loading && !data && <Loading />}
       {error && <p>{error.message}</p>}
       {data &&
-        data.map(({ author: commitAuthor, message, date, sha }) => (
+        data.map(({ author: commitAuthor, message, date, sha, verified }) => (
           <CardCommits
+            key={sha}
             author={commitAuthor}
             message={message}
             date={date}
+            verified={verified}
             to={`/${author}/${repositoryName}/${branchName}/${sha}`}
           />
         ))}
