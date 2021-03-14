@@ -7,7 +7,10 @@ import './styles.css';
 
 const Branches = () => {
   const { author, repositoryName } = useParams();
-  const { data, loading, error } = useRequest(getBranches, repositoryName);
+  const { data, loading, error } = useRequest(getBranches, {
+    author,
+    repositoryName,
+  });
 
   return (
     <div className="branches">

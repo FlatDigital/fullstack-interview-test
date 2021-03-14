@@ -6,10 +6,12 @@ import { getcommit } from '../../api';
 import './styles.css';
 
 const DetailCommit = () => {
-  const { author, repositoryName, branchName } = useParams();
+  const { author, repositoryName, branchName, commitSha } = useParams();
   const { data, loading, error } = useRequest(getcommit, {
+    author,
     repositoryName,
     branchName,
+    commitSha,
   });
 
   return (

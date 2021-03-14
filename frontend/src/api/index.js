@@ -4,22 +4,24 @@ const intance = axios.create({
   baseURL: 'http://localhost:3000/api',
 });
 
-export const getBranches = async (repositoryName) => {
-  // const res = await intance.get(`/${repositoryName}/branches`);
-  const res = {
+export const getBranches = async ({ author, repositoryName }) => {
+  const res = await intance.get(`/${author}/${repositoryName}/branches`);
+  /* const res = {
     data: [
       {
         sha: '13',
         name: 'Branch',
       },
     ],
-  };
+  };*/
   return res.data;
 };
 
-export const getcommits = async ({ repositoryName, branchName }) => {
-  // const res = await intance.get(`/${repositoryName}/branches/${branchName}/commits`);
-  const res = {
+export const getcommits = async ({ author, repositoryName, branchName }) => {
+  const res = await intance.get(
+    `/${author}/${repositoryName}/branches/${branchName}/commits`
+  );
+  /*const res = {
     data: [
       {
         author: 'Francisco',
@@ -29,13 +31,20 @@ export const getcommits = async ({ repositoryName, branchName }) => {
         sha: '13',
       },
     ],
-  };
+  };*/
   return res.data;
 };
 
-export const getcommit = async ({ repositoryName, branchName }) => {
-  // const res = await intance.get(`/${repositoryName}/branches/${branchName}/commits`);
-  const res = {
+export const getcommit = async ({
+  author,
+  repositoryName,
+  branchName,
+  commitSha,
+}) => {
+  const res = await intance.get(
+    `/${author}/${repositoryName}/branches/${branchName}/commits/${commitSha}`
+  );
+  /*const res = {
     data: {
       author: 'Francisco',
       message: 'feat: Github block me',
@@ -58,6 +67,6 @@ export const getcommit = async ({ repositoryName, branchName }) => {
         },
       ],
     },
-  };
+  };*/
   return res.data;
 };

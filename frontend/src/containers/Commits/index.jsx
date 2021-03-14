@@ -7,6 +7,7 @@ import { getcommits } from '../../api';
 const Commits = () => {
   const { author, repositoryName, branchName } = useParams();
   const { data, loading, error } = useRequest(getcommits, {
+    author,
     repositoryName,
     branchName,
   });
