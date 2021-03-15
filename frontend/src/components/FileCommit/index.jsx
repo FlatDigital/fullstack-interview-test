@@ -30,7 +30,7 @@ const LineRow = ({ line, idx }) => {
 };
 
 const FileCommit = ({ file }) => {
-  const splitedLinesFile = file.patch.split('\n');
+  const splitedLinesFile = file.patch ? file.patch.split('\n') : [];
   const linesFile = [];
 
   splitedLinesFile.forEach((element, idx) => {

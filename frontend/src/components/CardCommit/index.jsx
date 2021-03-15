@@ -27,7 +27,7 @@ const CardCommit = ({ data }) => {
             </span>
           </p>
           <p className="cardCommits__changes">
-            Showing <span>{total}</span> with <span>{additions}</span> additions
+            Showing <span>{total}</span> changes with <span>{additions}</span> additions
             and <span>{deletions}</span> deletions.
           </p>
         </div>
