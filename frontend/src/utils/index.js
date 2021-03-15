@@ -1,20 +1,21 @@
 export const getDate = (date) => {
   const MONTHS = [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'Dicember',
   ];
   const handleDate = new Date(date);
-  return `${handleDate.getDay()} ${
-    MONTHS[handleDate.getMonth() - 1]
+
+  return `${handleDate.getDate()} ${
+    MONTHS[handleDate.getMonth()]
   } ${handleDate.getFullYear()}`;
 };

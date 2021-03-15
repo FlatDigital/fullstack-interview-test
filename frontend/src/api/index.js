@@ -70,3 +70,14 @@ export const getcommit = async ({
   };*/
   return res.data;
 };
+
+export const getPulls = async ({
+  author,
+  repositoryName,
+  query: { state },
+}) => {
+  const res = await intance.get(
+    `/${author}/${repositoryName}/pulls?state=${state}`
+  );
+  return res.data;
+};
