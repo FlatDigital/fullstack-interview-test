@@ -19,7 +19,9 @@ const PullRequests = () => {
         {author}/{repositoryName}
       </h1>
       {loading && !data && <Loading />}
+      {data && data.length === 0 && <p>There are not pulls</p>}
       {data && data.map((pull) => <CardPull data={pull} />)}
+      {error && <p>Ups something is going bad</p>}
     </div>
   );
 };

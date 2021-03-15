@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { CardBranch, Loading } from '../../components';
 import { useRequest } from '../../hooks';
 import { getBranches } from '../../api';
@@ -17,6 +17,10 @@ const Branches = () => {
       <h1 className="braches__title">
         {author}/{repositoryName}
       </h1>
+      <div className="branches__btnsPulls">
+        <Link to={`/${author}/${repositoryName}/pulls`}>Ver Pulls</Link>
+        <Link to={`/${author}/${repositoryName}/pulls/new`}>Nuevo Pull</Link>
+      </div>
       {loading && !data && <Loading />}
       {error && <p>{error.message}</p>}
       {data &&

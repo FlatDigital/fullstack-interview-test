@@ -64,7 +64,7 @@ const FileCommit = ({ file }) => {
       <table className="fileCommit__table">
         <tbody className="fileCommit__body">
           {linesFile.map((line, idx) => (
-            <LineRow line={line} idx={idx} />
+            <LineRow key={idx} line={line} idx={idx} />
           ))}
         </tbody>
       </table>

@@ -11,7 +11,9 @@ const SlecteInputs = ({ name, label, options, onChange }) => {
       <label htmlFor={name}>{label}</label>
       <select id={name} name={name} onChange={onChange}>
         {options.map(({ name }) => (
-          <option value={name}>{name}</option>
+          <option key={name} value={name}>
+            {name}
+          </option>
         ))}
       </select>
     </div>
@@ -58,6 +60,11 @@ const CreatePull = () => {
   };
 
   const onSubmitHandleCretePull = () => {
+    if (!form.title || form.title === '') {
+      return alert('Please write a title');
+    } else if (!form.body || form.body === '') {
+      return alert('Please write a description');
+    }
     setHandleError(false);
     setHandleLoading(true);
     createPull({ author, repositoryName, ...form, ...compare })
@@ -71,6 +78,11 @@ const CreatePull = () => {
   };
 
   const onSubmitHandleCreteMerge = () => {
+    if (!form.title || form.title === '') {
+      return alert('Please write a title');
+    } else if (!form.body || form.body === '') {
+      return alert('Please write a description');
+    }
     setHandleError(false);
     setHandleLoading(true);
     createMerge({ author, repositoryName, ...form, ...compare })
@@ -155,7 +167,7 @@ const CreatePull = () => {
       <div>
         {!handleLoading &&
           files &&
-          files.map((file) => <FileCommit file={file} />)}
+          files.map((file) => <FileCommit key={file.sha} file={file} />)}
         {handleError && !files && <h1>Upss a ocurrido un error</h1>}
       </div>
     </div>
