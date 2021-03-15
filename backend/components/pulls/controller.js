@@ -13,8 +13,23 @@ const Controller = (service) => {
     }
   };
 
+  const compareBranches = async (req, res, next) => {
+    const { author, repositoryName, base, compare } = req.params;
+    try {
+      const comparedBranches = await service.compareBranches(
+        `${author}/${repositoryName}`,
+        base,
+        compare
+      );
+      return res.status(200).json(comparedBranches);
+    } catch (error) {
+      return next(error);
+    }
+  };
+
   return {
     findAll,
+    compareBranches,
   };
 };
 

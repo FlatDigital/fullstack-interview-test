@@ -36,7 +36,16 @@ const GitHubRepository = (repositoryName) => {
       });
     });
 
-  return { branches, commits, commit, prs };
+  const compare = (base, compare) =>
+    new Promise((resolve, reject) => {
+      console.log(base, compare);
+      ghRepo.compare(base, compare, (err, data) => {
+        if (err) return reject(err);
+        return resolve(data);
+      });
+    });
+
+  return { branches, commits, commit, prs, compare };
 };
 
 module.exports = GitHubRepository;

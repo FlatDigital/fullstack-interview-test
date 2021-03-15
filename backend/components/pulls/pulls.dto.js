@@ -10,4 +10,18 @@ const pullsDto = (resource) => {
   }));
 };
 
-module.exports = { pullsDto };
+const compareBranchesDto = (resource) => {
+  return {
+    files: resource.files.map((file) => ({
+      sha: file.sha,
+      filename: file.filename,
+      status: file.status,
+      additions: file.additions,
+      deletions: file.deletions,
+      changes: file.changes,
+      patch: file.patch,
+    })),
+  };
+};
+
+module.exports = { pullsDto, compareBranchesDto };
