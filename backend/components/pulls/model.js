@@ -15,13 +15,13 @@ const Model = (GitHubRepository, GitHubPull) => {
   };
 
   const createMerge = async (repositoryName, { head, base }) => {
-    return { repositoryName, head, base };
+    const ghRepo = GitHubRepository(repositoryName);
+    return await ghRepo.merge({ base, head });
   };
 
   const updatePull = async (repositoryName, number, state) => {
     const ghPr = GitHubPull(repositoryName, number);
-    const updatedPull = ghPr.update({ state });
-    return updatedPull;
+    return await ghPr.update({ state });
   };
 
   return {

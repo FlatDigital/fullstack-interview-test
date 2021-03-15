@@ -17,3 +17,8 @@ body,
   height: 100vh;
   overflow: hidden;
 }
+
+.handle__error {
+  font-size: 21px;
+  color: #fff;
+}

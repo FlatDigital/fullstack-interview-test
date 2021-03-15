@@ -70,10 +70,11 @@ const CreatePull = () => {
     setHandleLoading(true);
     createPull({ author, repositoryName, ...form, ...compare })
       .then((data) => {
-        alert('Pull reques was success');
+        alert('Pull request was success');
         history.push(`/${author}/${repositoryName}/pulls`);
       })
       .catch((err) => {
+        console.log(err);
         setHandleError(err);
       })
       .finally(() => setHandleLoading(false));
@@ -89,9 +90,11 @@ const CreatePull = () => {
     setHandleLoading(true);
     createMerge({ author, repositoryName, ...form, ...compare })
       .then((data) => {
-        console.log(data);
+        alert('Merge request was success');
+        history.push(`/${author}/${repositoryName}  `);
       })
       .catch((err) => {
+        console.log(err);
         setHandleError(err);
       })
       .finally(() => setHandleLoading(false));
@@ -130,6 +133,8 @@ const CreatePull = () => {
           Compare
         </button>
       </div>
+
+      {handleError && <p className="handle__error">{handleError.message}</p>}
 
       {handleLoading && <Loading />}
 
