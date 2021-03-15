@@ -81,3 +81,10 @@ export const getPulls = async ({
   );
   return res.data;
 };
+
+export const getCompare = async ({ author, repositoryName, base, compare }) => {
+  const res = await intance.get(
+    `/${author}/${repositoryName}/pulls/compare/${base}/${compare}`
+  );
+  return res.data;
+};

@@ -4,6 +4,7 @@ import {
   Commits,
   DetailCommit,
   PullRequests,
+  CreatePull,
 } from '../containers';
 
 export const ROUTER = [
@@ -12,6 +13,11 @@ export const ROUTER = [
     exact: true,
     path: '/:author/:repositoryName/pulls',
     component: PullRequests,
+  },
+  {
+    exact: true,
+    path: '/:author/:repositoryName/pulls/new',
+    component: CreatePull,
   },
   { exact: true, path: '/:author/:repositoryName', component: Branches },
   {

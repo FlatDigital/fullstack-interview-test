@@ -1,0 +1,58 @@
+.createPull__selectBranches {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #fff;
+}
+
+.createPull__selectBranch {
+  display: flex;
+  border: solid 1px #fff;
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.createPull__selectBranches select {
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+}
+
+.createPull__btnCompare {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border-color: #2ea043;
+  background-color: #238636;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.createPull__field label {
+  display: flex;
+  margin-bottom: 15px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.createPull__field input,
+.createPull__field textarea {
+  display: flex;
+  width: 100%;
+  border: solid 1px #30363d;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+}
+
+.createPull__field textarea {
+  height: 200px;
+  resize: none;
+}
