@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Loading, FileCommit } from '../../components';
 import { getBranches, getCompare, createPull, createMerge } from '../../api';
 import { useRequest } from '../../hooks';
@@ -21,6 +21,7 @@ const SlecteInputs = ({ name, label, options, onChange }) => {
 };
 
 const CreatePull = () => {
+  const history = useHistory();
   const { author, repositoryName } = useParams();
   const { data, loading } = useRequest(getBranches, { author, repositoryName });
   const [compare, setCompare] = useState({});
@@ -69,7 +70,8 @@ const CreatePull = () => {
     setHandleLoading(true);
     createPull({ author, repositoryName, ...form, ...compare })
       .then((data) => {
-        console.log(data);
+        alert('Pull reques was success');
+        history.push(`/${author}/${repositoryName}/pulls`);
       })
       .catch((err) => {
         setHandleError(err);

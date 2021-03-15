@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { updatePull } from '../../api';
 import { getDate } from '../../utils';
 import './styles.css';
 
 const CardPull = ({ data }) => {
+  const { author: own, repositoryName } = useParams();
   const { title, number, author, description, date, state, merged } = data;
+  const [pullState, setPullState] = useState(state);
+  const onClickHandleState = () => {
+    updatePull({ author: own, repositoryName, state: pullState, number })
+      .then((state) => {
+        setPullState(state);
+      })
+      .catch((err) => {
+        alert(err?.message);
+      });
+  };
+
   return (
     <div className="card cardPull">
       <div className="cardPull__container">
@@ -15,14 +29,20 @@ const CardPull = ({ data }) => {
           was merged on
           <span> {getDate(date)} </span>
         </p>
-        <p className="cardPull__description">
+        <div className="cardPull__description">
           {description === ''
             ? "This pull request don't have description"
             : null}
-          {description && description.split('\n').map((line) => <p>{line}</p>)}
-        </p>
+          {description &&
+            description.split('\n').map((line) => <p key={line}>{line}</p>)}
+        </div>
       </div>
-      <button className={`cardPull__status-${state}`}>{state}</button>
+      <button
+        onClick={onClickHandleState}
+        className={`cardPull__status-${pullState}`}
+      >
+        {pullState}
+      </button>
       {merged && <button className="cardPull__status-merged">Merged</button>}
     </div>
   );

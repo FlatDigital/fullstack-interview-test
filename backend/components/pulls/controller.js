@@ -63,11 +63,27 @@ const Controller = (service) => {
     }
   };
 
+  const updatePull = async (req, res, next) => {
+    const { author, repositoryName, number } = req.params;
+    const { state } = req.body;
+    try {
+      const updatedPull = await service.updatePull(
+        `${author}/${repositoryName}`,
+        number,
+        state
+      );
+      return res.status(200).json(updatedPull);
+    } catch (error) {
+      return next(error);
+    }
+  };
+
   return {
     findAll,
     compareBranches,
     createPull,
     createMerge,
+    updatePull,
   };
 };
 

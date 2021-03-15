@@ -24,4 +24,8 @@ const compareBranchesDto = (resource) => {
   };
 };
 
-module.exports = { pullsDto, compareBranchesDto };
+const updatePullDto = (resource) => ({
+  state: resource.state,
+});
+
+module.exports = { pullsDto, compareBranchesDto, updatePullDto };

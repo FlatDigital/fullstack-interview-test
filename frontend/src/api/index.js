@@ -84,7 +84,10 @@ export const getPulls = async ({
 
 export const getCompare = async ({ author, repositoryName, base, compare }) => {
   const res = await intance.get(
-    `/${author}/${repositoryName}/pulls/compare/${base}/${compare}`
+    `/${author}/${repositoryName}/pulls/compare/${base.replace(
+      '/',
+      '%2F'
+    )}/${compare.replace('/', '%2F')}`
   );
   return res.data;
 };
@@ -121,4 +124,14 @@ export const createMerge = async ({
     head,
   });
   return res.data;
+};
+
+export const updatePull = async ({ author, repositoryName, number, state }) => {
+  const res = await intance.put(
+    `/${author}/${repositoryName}/pulls/${number}`,
+    {
+      state,
+    }
+  );
+  return res.data.state;
 };

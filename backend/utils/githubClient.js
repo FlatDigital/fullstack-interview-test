@@ -1,5 +1,6 @@
 const octonode = require('octonode');
-const client = octonode.client();
+const config = require('config');
+const client = octonode.client(config.get('token'));
 
 const GitHubRepository = (repositoryName) => {
   const ghRepo = client.repo(repositoryName);
@@ -38,7 +39,6 @@ const GitHubRepository = (repositoryName) => {
 
   const compare = (base, compare) =>
     new Promise((resolve, reject) => {
-      console.log(base, compare);
       ghRepo.compare(base, compare, (err, data) => {
         if (err) return reject(err);
         return resolve(data);
@@ -72,4 +72,19 @@ const GitHubRepository = (repositoryName) => {
   return { branches, commits, commit, prs, compare, createPr, merge };
 };
 
-module.exports = GitHubRepository;
+const GitHubPull = (repositoryName, number) => {
+  const ghPr = client.pr(repositoryName, number);
+
+  const update = ({ state }) =>
+    new Promise((resolve, reject) => {
+      ghPr.update({ state }, (err, data) => {
+        if (err) return reject(err);
+        return resolve(data);
+      });
+    });
+
+  return { update };
+};
+
+module.exports.GitHubPull = GitHubPull;
+module.exports.GitHubRepository = GitHubRepository;
