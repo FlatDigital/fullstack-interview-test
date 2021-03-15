@@ -31,15 +31,33 @@ const Controller = (service) => {
     const { author, repositoryName } = req.params;
     const { title, body, head, base } = req.body;
     try {
-      const comparedBranches = await service.createPull({
-        author,
-        repositoryName,
-        title,
-        body,
-        head,
-        base,
-      });
-      return res.status(200).json(comparedBranches);
+      const createdPull = await service.createPull(
+        `${author}/${repositoryName}`,
+        {
+          title,
+          body,
+          head,
+          base,
+        }
+      );
+      return res.status(200).json(createdPull);
+    } catch (error) {
+      return next(error);
+    }
+  };
+
+  const createMerge = async (req, res, next) => {
+    const { author, repositoryName } = req.params;
+    const { head, base } = req.body;
+    try {
+      const createdMerge = await service.createMerge(
+        `${author}/${repositoryName}`,
+        {
+          head,
+          base,
+        }
+      );
+      return res.status(200).json(createdMerge);
     } catch (error) {
       return next(error);
     }
@@ -49,6 +67,7 @@ const Controller = (service) => {
     findAll,
     compareBranches,
     createPull,
+    createMerge,
   };
 };
 

@@ -107,3 +107,18 @@ export const createPull = async ({
   });
   return res.data;
 };
+
+export const createMerge = async ({
+  author,
+  repositoryName,
+  base,
+  compare: head,
+}) => {
+  const res = await intance.post(`/${author}/${repositoryName}/merges`, {
+    author,
+    repositoryName,
+    base,
+    head,
+  });
+  return res.data;
+};

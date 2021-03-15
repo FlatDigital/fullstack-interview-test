@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Loading, FileCommit } from '../../components';
-import { getBranches, getCompare, createPull } from '../../api';
+import { getBranches, getCompare, createPull, createMerge } from '../../api';
 import { useRequest } from '../../hooks';
 import './styles.css';
 
@@ -25,6 +25,8 @@ const CreatePull = () => {
   const [branches, setBranches] = useState(false);
   const [files, setFiles] = useState(false);
   const [form, setForm] = useState({ title: '', body: '' });
+  const [handleError, setHandleError] = useState(false);
+  const [handleLoading, setHandleLoading] = useState(false);
 
   const onChange = (_event) => {
     const { name, value } = _event.target;
@@ -43,24 +45,42 @@ const CreatePull = () => {
   };
 
   const onClickHandleSelectButton = () => {
+    setHandleError(false);
+    setHandleLoading(true);
     getCompare({ author, repositoryName, ...compare })
       .then((data) => {
         setFiles(data.files);
       })
-      .catch(() => {
-        console.log('ERROR');
-      });
+      .catch((err) => {
+        setHandleError(err);
+      })
+      .finally(() => setHandleLoading(false));
   };
 
   const onSubmitHandleCretePull = () => {
-    console.log(form);
+    setHandleError(false);
+    setHandleLoading(true);
     createPull({ author, repositoryName, ...form, ...compare })
       .then((data) => {
         console.log(data);
       })
       .catch((err) => {
-        console.log(err.message);
-      });
+        setHandleError(err);
+      })
+      .finally(() => setHandleLoading(false));
+  };
+
+  const onSubmitHandleCreteMerge = () => {
+    setHandleError(false);
+    setHandleLoading(true);
+    createMerge({ author, repositoryName, ...form, ...compare })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        setHandleError(err);
+      })
+      .finally(() => setHandleLoading(false));
   };
 
   useEffect(() => {
@@ -97,33 +117,47 @@ const CreatePull = () => {
         </button>
       </div>
 
-      <div className="card createPull__info">
-        <div className="createPull__field">
-          <label htmlFor="title">Titulo</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            value={form.title}
-            onChange={onChangeForm}
-          />
-        </div>
-        <div className="createPull__field">
-          <label htmlFor="body">Description</label>
-          <textarea
-            id="body"
-            name="body"
-            value={form.body}
-            onChange={onChangeForm}
-          />
-        </div>
-        <button className="createPull__btn" onClick={onSubmitHandleCretePull}>
-          Create
-        </button>
-        <button className="createPull__btn">Merge</button>
-      </div>
+      {handleLoading && <Loading />}
 
-      <div>{files && files.map((file) => <FileCommit file={file} />)}</div>
+      {!handleError && !handleLoading && files && (
+        <div className="card createPull__info">
+          <div className="createPull__field">
+            <label htmlFor="title">Titulo</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value={form.title}
+              onChange={onChangeForm}
+            />
+          </div>
+          <div className="createPull__field">
+            <label htmlFor="body">Description</label>
+            <textarea
+              id="body"
+              name="body"
+              value={form.body}
+              onChange={onChangeForm}
+            />
+          </div>
+          <button className="createPull__btn" onClick={onSubmitHandleCretePull}>
+            Create
+          </button>
+          <button
+            className="createPull__btn"
+            onClick={onSubmitHandleCreteMerge}
+          >
+            Merge
+          </button>
+        </div>
+      )}
+
+      <div>
+        {!handleLoading &&
+          files &&
+          files.map((file) => <FileCommit file={file} />)}
+        {handleError && !files && <h1>Upss a ocurrido un error</h1>}
+      </div>
     </div>
   );
 };

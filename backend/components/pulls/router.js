@@ -8,10 +8,13 @@ const Controller = require('./controller');
 
 const model = Model(githubClient);
 const service = Service(model);
-const { findAll, createPull, compareBranches } = Controller(service);
+const { findAll, createPull, compareBranches, createMerge } = Controller(
+  service
+);
 
 router.get('/:author/:repositoryName/pulls', findAll);
 router.post('/:author/:repositoryName/pulls', createPull);
+router.post('/:author/:repositoryName/merges', createMerge);
 router.get(
   '/:author/:repositoryName/pulls/compare/:base/:compare',
   compareBranches
