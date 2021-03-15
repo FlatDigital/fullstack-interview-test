@@ -15,9 +15,21 @@ const Service = (model) => {
     return compareBranchesDto(comparedBranches);
   };
 
+  const createPull = async ({
+    author,
+    repositoryName,
+    title,
+    body,
+    head,
+    base,
+  }) => {
+    return { author, repositoryName, title, body, head, base };
+  };
+
   return {
     findAll,
     compareBranches,
+    createPull,
   };
 };
 

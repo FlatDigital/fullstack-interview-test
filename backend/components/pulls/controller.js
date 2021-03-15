@@ -27,9 +27,28 @@ const Controller = (service) => {
     }
   };
 
+  const createPull = async (req, res, next) => {
+    const { author, repositoryName } = req.params;
+    const { title, body, head, base } = req.body;
+    try {
+      const comparedBranches = await service.createPull({
+        author,
+        repositoryName,
+        title,
+        body,
+        head,
+        base,
+      });
+      return res.status(200).json(comparedBranches);
+    } catch (error) {
+      return next(error);
+    }
+  };
+
   return {
     findAll,
     compareBranches,
+    createPull,
   };
 };
 

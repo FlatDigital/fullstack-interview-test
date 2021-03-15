@@ -88,3 +88,22 @@ export const getCompare = async ({ author, repositoryName, base, compare }) => {
   );
   return res.data;
 };
+
+export const createPull = async ({
+  author,
+  repositoryName,
+  title,
+  body,
+  base,
+  compare: head,
+}) => {
+  const res = await intance.post(`/${author}/${repositoryName}/pulls`, {
+    author,
+    repositoryName,
+    title,
+    body,
+    base,
+    head,
+  });
+  return res.data;
+};
