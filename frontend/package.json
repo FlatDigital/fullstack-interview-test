@@ -11,6 +11,7 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "serve": "^11.3.2",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
@@ -18,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "start:prod": "serve -s build"
   },
   "eslintConfig": {
     "extends": [
