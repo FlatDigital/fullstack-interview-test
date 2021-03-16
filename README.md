@@ -23,3 +23,22 @@ docker-compose -f docker-compose.yml up
 
 ## Note
 The token variable is necessary to actions that read, create or modify one resource
+
+## Run tests
+Go to backend folder and run
+```bash
+npm install
+export TOKEN=1a2b3c4d5e6f7g8h9
+```
+
+Run test
+```bash
+npm run test
+```
+
+Watch coverare
+
+This create a folder coverage where you find the result
+```bash
+npm run test:coverage
+```
