@@ -15,11 +15,14 @@ const Service = (model) => {
     return compareBranchesDto(comparedBranches);
   };
 
-  const createPull = async (repositoryName, { title, body, head, base }) => {
+  const createPull = async (
+    repositoryName,
+    { username, title, body, head, base }
+  ) => {
     const createdPull = await model.createPull(repositoryName, {
       title,
       body,
-      head: `FranciscoGustavo:${head}`,
+      head: `${username}:${head}`,
       base,
     });
     return createdPull;

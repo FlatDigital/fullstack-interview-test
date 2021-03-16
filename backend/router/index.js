@@ -3,9 +3,9 @@ const commitsRouter = require('../components/commits/router');
 const pullsRouter = require('../components/pulls/router');
 
 const API_V1_ROUTES = (app) => {
-  app.use('/api', branchesRouter);
-  app.use('/api', commitsRouter);
-  app.use('/api', pullsRouter);
+  branchesRouter(app, '/api');
+  commitsRouter(app, '/api');
+  pullsRouter(app, '/api');
 };
 
 module.exports = API_V1_ROUTES;

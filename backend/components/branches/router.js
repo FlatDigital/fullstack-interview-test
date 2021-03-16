@@ -8,8 +8,13 @@ const Controller = require('./controller');
 
 const model = Model(GitHubRepository);
 const service = Service(model);
-const { findAll } = Controller(service);
+const controller = Controller(service);
 
-router.get('/:author/:repositoryName/branches', findAll);
+const branchesRouter = (app, route, ctr = controller) => {
+  const { findAll } = ctr;
+  router.get('/:author/:repositoryName/branches', findAll);
 
-module.exports = router;
+  app.use(route, router);
+};
+
+module.exports = branchesRouter;

@@ -34,6 +34,7 @@ const Controller = (service) => {
       const createdPull = await service.createPull(
         `${author}/${repositoryName}`,
         {
+          username: author,
           title,
           body,
           head,
