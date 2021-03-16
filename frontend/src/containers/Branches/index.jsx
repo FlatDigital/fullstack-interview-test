@@ -29,7 +29,7 @@ const Branches = () => {
             key={commit}
             commit={commit}
             name={name}
-            to={`/${author}/${repositoryName}/${name}`}
+            to={`/${author}/${repositoryName}/${name.replace('/', '%2F')}`}
           />
         ))}
     </div>
