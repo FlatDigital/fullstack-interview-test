@@ -1,44 +1,34 @@
-# fullstack-interview-test
-Interview test for fullstack Software Engineers
+# PirateHub (fullstack-interview-test)
 
-## Instructions
-Clone this repository
+This project show you the history of all the changes, using an application in react and api that get all the information from the official github api.
 
-You need to copy the file `.env.example` and rename like `.env` and complete the variables
+You need to have installed docker and docker-compose for run this project and also you need a token of github author of this project.
+
+Now for can run this project follow next steps
+* Clone this repository
+* Copy the file `.env.example` and rename like `.env` and complete the variables
 ```
 // GITHUB TOKEN
-TOKEN=1a2b3c4d5e6f7g8h9
+TOKEN={author token of this repository}
 ```
-
-You can run this proyect using docker-compose only open this drectory and run 
+* Build dockers files
 ```bash
-docker-compose -f docker-compose.yml build 
+docker-compose -f docker-compose.yml build
 ```
-and after run 
+* Start project
 ```bash
 docker-compose -f docker-compose.yml up
 ```
+* Got to browser and write http://localhost:3000 this show you the web app
+* Click in watch demo
+* Can write http://localhost:5000 this is the url to api
+  
+Also you can run the test
+* You need have to installed node version 15
+* Go to backend folder
+* Run `npm install`
+* Now export the faketoken in the terminal `export TOKEN=1a2b3c4d5e6f7g8h9` 
+* Run tests `npm run test`
+* Get coverge report `npm run test:coverage`
 
-**You can see more information on docs folder there are you can find the routes documentation of backend**
-
-## Note
-The token variable is necessary to actions that read, create or modify one resource
-
-## Run tests
-Go to backend folder and run
-```bash
-npm install
-export TOKEN=1a2b3c4d5e6f7g8h9
-```
-
-Run test
-```bash
-npm run test
-```
-
-Watch coverare
-
-This create a folder coverage where you find the result
-```bash
-npm run test:coverage
-```
+You can read more details on docs folder
