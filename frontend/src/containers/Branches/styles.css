@@ -1,0 +1,40 @@
+.branches,
+.page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  padding: 30px;
+  background-color: #0d1117;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.braches__title,
+.page__title {
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 50px;
+  font-size: 21px;
+  color: #fff;
+}
+
+.branches__btnsPulls {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+
+.branches__btnsPulls a {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border-color: #2ea043;
+  margin-right: 10px;
+  background-color: #238636;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+}

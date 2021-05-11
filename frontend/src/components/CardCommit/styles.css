@@ -1,0 +1,15 @@
+.cardCommit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardCommits__changes {
+  margin-top: 2px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.cardCommits__changes > span {
+  color: #58a6ff;
+}

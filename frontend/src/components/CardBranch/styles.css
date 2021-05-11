@@ -1,0 +1,19 @@
+.cardBranch,
+.card {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: solid 1px #30363d;
+  margin-bottom: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cardBranch a {
+  display: inline-block;
+  border-radius: 8px;
+  padding: 2px 8px;
+  text-decoration: none;
+  color: #58a6ff;
+  background-color: rgba(88, 166, 255, 0.1);
+}

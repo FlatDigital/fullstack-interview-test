@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+const http = require('http');
+const config = require('config');
+const debug = require('debug')('backend:app');
+const app = require('../app');
+
+const PORT = config.get('port');
+
+const server = http.createServer(app);
+
+server.listen(PORT, () => {
+  debug(`Server is runing on port ${PORT}`);
+});
