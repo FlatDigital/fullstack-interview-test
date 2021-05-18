@@ -1,0 +1,10 @@
+<div>
+	<p><strong>Branch: {{branch}}</strong></p>
+    {% for commit in commits %}
+    	<p>Commit ID: {{ commit.hexsha }}</p>
+        <p>Author: {{ commit.author.name }} - Email: {{commit.author.email}} </p>
+        <p>{{ commit.authored_datetime }}</p>
+        <p>{{ commit.summary }}</p>
+        <p>Count: {{ commit.count }} - Size: {{ commit.size }}</p>
+    {% endfor %}
+</div>

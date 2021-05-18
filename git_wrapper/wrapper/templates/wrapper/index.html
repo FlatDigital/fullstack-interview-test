@@ -1,0 +1,21 @@
+<div>
+    <p><i>Description: {{ desc }}</i></p>
+    <p><strong>Branches: </strong></p>
+
+    <ul>
+    {% for branch in branches %}
+    	{% if active_branch == branch %}
+        	<li><strong><a href="{% url 'commits' branch %}">{{ branch }}</a></strong></li>
+        {% else %}
+        	<li><a href="{% url 'commits' branch %}">{{ branch }}</a></li>
+        {% endif %}
+    {% endfor %}
+        </ul>
+
+    <strong>Remote Repos: </strong>
+    <ul>
+    {% for remote in remotes %}
+    	<li>{{ remote }}: {{ remote.url }}</li>
+    {% endfor %}
+    </ul>    
+</div>
