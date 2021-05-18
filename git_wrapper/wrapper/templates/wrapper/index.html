@@ -15,7 +15,7 @@
     <strong>Remote Repos: </strong>
     <ul>
     {% for remote in remotes %}
-    	<li>{{ remote }}: {{ remote.url }}</li>
+    	<li>{{ remote }}: <a href="{{ remote.url }}">{{ remote.url }}</a></li>
     {% endfor %}
     </ul>    
 </div>

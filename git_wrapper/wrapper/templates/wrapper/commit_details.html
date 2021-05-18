@@ -1,0 +1,9 @@
+<div>
+	<p><strong>Branch: {{ branch }}</strong></p>
+	<p>Commit ID: {{ commit.hexsha }}</p>
+    <p>Author: {{ commit.author.name }} - Email: <a href="mailto:{{ commit.author.email }}">{{ commit.author.email }}</a></p>
+    <p>{{ commit.authored_datetime }}</p>
+    <p> - Summary - </p>
+    <p><i>{{ commit.summary }}</i></p>
+    <p>Count: {{ commit.count }} - Size: {{ commit.size }}</p>
+</div>
