@@ -22,8 +22,15 @@ def commits(request, branch):
 
 def commit_details(request, branch, commit_id):
 	repo = Repo('../.')
+	commit = repo.commit(commit_id)
+	if commit.parents:
+		diff = commit.diff(commit.parents[-1], create_patch=True)
+	else:
+		diff = commit.diff('4b825dc642cb6eb9a060e54bf8d69288fbee4904', create_patch=True)
 	res = {
-		'commit': repo.commit(commit_id),
-		'branch': branch 
+		'commit': commit,
+		'branch': branch, 
+		'diff': diff,
+		'dir': dir(commit)
 	}
 	return render(request, 'wrapper/commit_details.html', res)

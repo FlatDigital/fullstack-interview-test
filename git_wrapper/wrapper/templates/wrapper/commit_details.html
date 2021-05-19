@@ -1,9 +1,19 @@
 <div>
 	<p><strong>Branch: {{ branch }}</strong></p>
 	<p>Commit ID: {{ commit.hexsha }}</p>
-    <p>Author: {{ commit.author.name }} - Email: <a href="mailto:{{ commit.author.email }}">{{ commit.author.email }}</a></p>
-    <p>{{ commit.authored_datetime }}</p>
+	<p>Author: {{ commit.author.name }} - Email: <a href="mailto:{{ commit.author.email }}">{{ commit.author.email }}</a></p>
+	<p>{{ commit.authored_datetime }}</p>
     <p> - Summary - </p>
     <p><i>{{ commit.summary }}</i></p>
+    <p><i>{{ commit.stats.files }}</i></p>
+    <p><i>{{ commit.stats.total }}</i></p>
+    <p>Changes: </p>
+    <pre>
+    {% for patch in diff %}
+	<code>
+	    {{ patch }}
+	</code>
+    {% endfor %}
+    </pre>
     <p>Count: {{ commit.count }} - Size: {{ commit.size }}</p>
 </div>
