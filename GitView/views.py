@@ -13,8 +13,9 @@ def index(request):
     repo = Repo('/Users/macbookair/Documents/GitHub/fullstack-interview-test')
     branches = []
     remote_branches = []
-    for ref in repo.git.branch('-r').split('\n'):
-        print(ref)
-        remote_branches.append(ref)
+    for ref in repo.git.branch().split('\n'):
+        for k in repo.branches[ref]:
+            print(k)
+            remote_branches.append(k)
     assert not repo.bare
     return HttpResponse("Hello, world. You're at the polls index.")
