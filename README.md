@@ -23,8 +23,7 @@ The main objects we'll be dealing with are:
 We'd like to see a visual representation of the git history of this repo as a **JS web-app**, using the API previously described. To be specific, we'd like to see the following:
 - A view where we can see the existing branches
 - A branch detail view where we can see all the commits to one specific branch, with commit messages, authors and timestamps.
-- A commit detail view where we can see the commit message, timestamp, number of files changed and author names / emails.
-- A "PR" create view, where we can choose two branches (base and compare), and merge them together, just like Pull Requests work in Github. 
+- A commit detail view where we can see the commit message, timestamp, number of files changed and author names / emails. 
 - A "PR" list view, where we see all created PRs and the following info: Author, Title, Description and Status (`Open`, `Closed`, `Merged`). If the status is `Open`, there should be a button that allows us to mark it as `Closed`.
 
 It's up to you to design how this should look code-wise, but we don't expect you to model all git objects in a DB. We're ok with reading them using a library wrapper for git like [GitPython](https://gitpython.readthedocs.io/en/stable/), on-demand. The only DB design required is the one for PRs.
@@ -44,3 +43,5 @@ We also care about being able to run your test without significant effort on our
 - Your code has tests.
 
 If you come across any questions or anything we didn't cover on this README, feel free to reach out to us and we'll get you an answer as soon as possible. Happy coding!
+
+DATA ADDED
