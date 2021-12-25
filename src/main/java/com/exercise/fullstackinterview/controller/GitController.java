@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/git-wrapper")
@@ -31,7 +30,7 @@ public class GitController {
   @GetMapping("/commits")
   @ResponseBody
   @ResponseStatus(HttpStatus.OK)
-  public Mono<CommitDto> getCommits(@RequestParam String branch) {
+  public Flux<CommitDto> getCommits(@RequestParam String branch) {
     return gitService.getCommits(branch);
   }
 }

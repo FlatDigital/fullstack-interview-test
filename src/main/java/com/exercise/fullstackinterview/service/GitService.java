@@ -22,7 +22,18 @@ public class GitService {
     return gitWebClient.getBranches();
   }
 
-  public Mono<CommitDto> getCommits(String branch) {
-    return gitWebClient.getCommits(branch).map(response -> commitMapper.responseToDto(response)) ;
+  public Flux<CommitDto> getCommits(String branch) {
+    return Flux.concat(getCommit(branch));
+  }
+
+  private Mono<CommitDto> getCommit(String branch) {
+    return gitWebClient.getCommits(branch).map(response -> {
+      if (response.getParents().isEmpty()) {
+        return new CommitDto();
+      }
+
+      getCommit(response.getParents().get(0).getSha());
+      return commitMapper.responseToDto(response);
+    });
   }
 }
