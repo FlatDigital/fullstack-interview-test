@@ -6,10 +6,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface CommitMapper {
+public interface ResponseMapper {
 
   @Mapping(source = "commit.message", target = "message")
   @Mapping(source = "commit.author.name", target = "author")
   @Mapping(source = "commit.author.date", target = "date")
-  CommitDto responseToDto(CommitResponse response);
+  CommitDto commitToDto(CommitResponse response);
 }
