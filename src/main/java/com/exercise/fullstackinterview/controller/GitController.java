@@ -24,6 +24,4 @@ public class GitController {
   public Flux<Branch> getBranches() {
     return gitService.getBranches();
   }
-
-  // This is just a test
 }
