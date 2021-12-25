@@ -1,7 +1,7 @@
 package com.exercise.fullstackinterview.controller;
 
+import com.exercise.fullstackinterview.dto.BranchDto;
 import com.exercise.fullstackinterview.dto.CommitDto;
-import com.exercise.fullstackinterview.model.branches.Branch;
 import com.exercise.fullstackinterview.service.GitService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class GitController {
   @GetMapping("/initial")
   @ResponseBody
   @ResponseStatus(HttpStatus.OK)
-  public Flux<Branch> getAllBranches() {
+  public Flux<BranchDto> getAllBranches() {
     return gitService.getAllBranches();
   }
 

@@ -1,8 +1,8 @@
 package com.exercise.fullstackinterview.service;
 
+import com.exercise.fullstackinterview.dto.BranchDto;
 import com.exercise.fullstackinterview.dto.CommitDto;
 import com.exercise.fullstackinterview.mapper.ResponseMapper;
-import com.exercise.fullstackinterview.model.branches.Branch;
 import com.exercise.fullstackinterview.model.commit.CommitResponse;
 import com.exercise.fullstackinterview.model.commit.Parent;
 import com.exercise.fullstackinterview.webclient.GitWebClient;
@@ -27,8 +27,9 @@ public class GitService {
   @Autowired
   ResponseMapper responseMapper;
 
-  public Flux<Branch> getAllBranches() {
-    return gitWebClient.getAllBranches();
+  public Flux<BranchDto> getAllBranches() {
+    return gitWebClient.getAllBranches()
+        .map(branch -> BranchDto.builder().name(branch.name).build());
   }
 
   public List<CommitDto> getCommits(String branch, String token) {
@@ -58,7 +59,7 @@ public class GitService {
         url.concat(commitResponse.getParents().get(0).getSha()), HttpMethod.GET, entity,
         CommitResponse.class).getBody();
 
-    commits.add(responseMapper.responseToDto(response));
+    commits.add(responseMapper.commitToDto(response));
 
     getCommitResponse(Objects.requireNonNull(response), commits, token);
   }
