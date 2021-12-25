@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CommitDto {
 
+  private String sha;
   private String message;
   private String author;
   private ZonedDateTime date;
