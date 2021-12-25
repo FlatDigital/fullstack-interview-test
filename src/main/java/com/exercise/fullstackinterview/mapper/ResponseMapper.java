@@ -11,5 +11,6 @@ public interface ResponseMapper {
   @Mapping(source = "commit.message", target = "message")
   @Mapping(source = "commit.author.name", target = "author")
   @Mapping(source = "commit.author.date", target = "date")
+  @Mapping(source = "sha", target = "sha")
   CommitDto commitToDto(CommitResponse response);
 }
