@@ -32,7 +32,7 @@ public class GitWebClient {
         .uri(uriBuilder -> uriBuilder.path(uri).build());
   }
 
-  public Flux<Branch> getBranches() {
+  public Flux<Branch> getAllBranches() {
     return get("/branches")
         .bodyToFlux(Branch.class);
   }

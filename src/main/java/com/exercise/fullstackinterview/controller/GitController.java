@@ -22,11 +22,11 @@ public class GitController {
   @Autowired
   GitService gitService;
 
-  @GetMapping("/branches")
+  @GetMapping("/initial")
   @ResponseBody
   @ResponseStatus(HttpStatus.OK)
-  public Flux<Branch> getBranches() {
-    return gitService.getBranches();
+  public Flux<Branch> getAllBranches() {
+    return gitService.getAllBranches();
   }
 
   @GetMapping("/commits")

@@ -27,8 +27,8 @@ public class GitService {
   @Autowired
   CommitMapper commitMapper;
 
-  public Flux<Branch> getBranches() {
-    return gitWebClient.getBranches();
+  public Flux<Branch> getAllBranches() {
+    return gitWebClient.getAllBranches();
   }
 
   public List<CommitDto> getCommits(String branch, String token) {
