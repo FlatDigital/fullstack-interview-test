@@ -31,23 +31,25 @@ public class GitService {
     return gitWebClient.getBranches();
   }
 
-  public List<CommitDto> getCommits(String branch) {
+  public List<CommitDto> getCommits(String branch, String token) {
     Parent[] parents = {Parent.builder().sha(branch).build()};
 
     List<CommitDto> commits = new ArrayList<>();
-    getCommitResponse(CommitResponse.builder().parents(Arrays.asList(parents)).build(), commits);
+    getCommitResponse(CommitResponse.builder().parents(Arrays.asList(parents)).build(), commits,
+        token);
 
     return commits;
   }
 
-  private void getCommitResponse(CommitResponse commitResponse, List<CommitDto> commits) {
+  private void getCommitResponse(CommitResponse commitResponse, List<CommitDto> commits,
+      String token) {
     if (commitResponse.getParents().isEmpty()) {
       return;
     }
 
     RestTemplate restTemplate = new RestTemplate();
     HttpHeaders headers = new HttpHeaders();
-    headers.setBearerAuth("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");
+    headers.setBearerAuth(token);
 
     HttpEntity<Void> entity = new HttpEntity<>(headers);
     String url = "https://api.github.com/repos/cheo2322/fullstack-interview-test/commits/";
@@ -58,6 +60,6 @@ public class GitService {
 
     commits.add(commitMapper.responseToDto(response));
 
-    getCommitResponse(Objects.requireNonNull(response), commits);
+    getCommitResponse(Objects.requireNonNull(response), commits, token);
   }
 }
