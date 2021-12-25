@@ -128,3 +128,20 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /.idea/
+/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/.gradle/buildOutputCleanup/cache.properties
+/.gradle/7.3.2/checksums/checksums.lock
+/.gradle/7.3.2/dependencies-accessors/dependencies-accessors.lock
+/.gradle/7.3.2/executionHistory/executionHistory.bin
+/.gradle/7.3.2/executionHistory/executionHistory.lock
+/.gradle/file-system.probe
+/.gradle/7.3.2/fileHashes/fileHashes.bin
+/.gradle/7.3.2/fileHashes/fileHashes.lock
+/.gradle/7.3.2/dependencies-accessors/gc.properties
+/.gradle/7.3.2/gc.properties
+/.gradle/vcs-1/gc.properties
+/.gradle/7.3.2/fileChanges/last-build.bin
+/.gradle/7.3.2/checksums/md5-checksums.bin
+/.gradle/buildOutputCleanup/outputFiles.bin
+/.gradle/7.3.2/fileHashes/resourceHashesCache.bin
+/.gradle/7.3.2/checksums/sha1-checksums.bin
