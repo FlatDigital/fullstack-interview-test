@@ -3,6 +3,7 @@ package com.exercise.fullstackinterview.controller;
 import com.exercise.fullstackinterview.dto.CommitDto;
 import com.exercise.fullstackinterview.model.branches.Branch;
 import com.exercise.fullstackinterview.service.GitService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,7 @@ public class GitController {
   @GetMapping("/commits")
   @ResponseBody
   @ResponseStatus(HttpStatus.OK)
-  public Flux<CommitDto> getCommits(@RequestParam String branch) {
+  public List<CommitDto> getCommits(@RequestParam String branch) {
     return gitService.getCommits(branch);
   }
 }
