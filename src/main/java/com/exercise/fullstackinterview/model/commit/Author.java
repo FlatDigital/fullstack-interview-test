@@ -1,6 +1,6 @@
 package com.exercise.fullstackinterview.model.commit;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class Author {
 
   public String name;
   public String email;
-  public LocalDateTime date;
+  public ZonedDateTime date;
   public String login;
   public int id;
   public String node_id;

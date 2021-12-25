@@ -37,9 +37,9 @@ public class GitWebClient {
         .bodyToFlux(Branch.class);
   }
 
-  public Flux<CommitResponse> getCommits() {
-    return get("/commits")
-        .bodyToFlux(CommitResponse.class);
+  public Mono<CommitResponse> getCommits(String branch) {
+    return get("/commits/".concat(branch))
+        .bodyToMono(CommitResponse.class);
   }
 
   private ResponseSpec get(String uri) {
