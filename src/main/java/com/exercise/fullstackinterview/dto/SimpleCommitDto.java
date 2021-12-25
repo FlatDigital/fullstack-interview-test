@@ -12,12 +12,10 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommitDto {
+public class SimpleCommitDto {
 
   private String sha;
   private String message;
-  private ZonedDateTime timestamp;
-  private int filesChanged;
   private String author;
-  private String email;
+  private ZonedDateTime date;
 }

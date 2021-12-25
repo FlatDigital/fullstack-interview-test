@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-25T10:11:22-0500",
+    date = "2021-12-25T10:46:06-0500",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.3.2.jar, environment: Java 11.0.8 (Oracle Corporation)"
 )
 @Component
@@ -25,9 +25,12 @@ public class ResponseMapperImpl implements ResponseMapper {
 
         CommitDtoBuilder commitDto = CommitDto.builder();
 
+        commitDto.sha( response.getSha() );
         commitDto.message( responseCommitMessage( response ) );
         commitDto.author( responseCommitAuthorName( response ) );
-        commitDto.date( responseCommitAuthorDate( response ) );
+        commitDto.timestamp( responseCommitAuthorDate( response ) );
+        commitDto.email( responseCommitAuthorEmail( response ) );
+        commitDto.filesChanged( ResponseMapper.numberOfFiles( response.getFiles() ) );
 
         return commitDto.build();
     }
@@ -83,5 +86,24 @@ public class ResponseMapperImpl implements ResponseMapper {
             return null;
         }
         return date;
+    }
+
+    private String responseCommitAuthorEmail(CommitResponse commitResponse) {
+        if ( commitResponse == null ) {
+            return null;
+        }
+        Commit commit = commitResponse.getCommit();
+        if ( commit == null ) {
+            return null;
+        }
+        Author author = commit.getAuthor();
+        if ( author == null ) {
+            return null;
+        }
+        String email = author.getEmail();
+        if ( email == null ) {
+            return null;
+        }
+        return email;
     }
 }

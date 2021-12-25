@@ -32,7 +32,15 @@ public class GitController {
   @GetMapping("/commits")
   @ResponseBody
   @ResponseStatus(HttpStatus.OK)
-  public List<CommitDto> getCommits(@RequestParam String branch, @RequestHeader String token) {
+  public List<CommitDto> getCommits(@RequestParam String branch,
+      @RequestHeader String token) {
     return gitService.getCommits(branch, token);
   }
+
+//  @GetMapping("/commits/{sha}")
+//  @ResponseBody
+//  @ResponseStatus(HttpStatus.OK)
+//  public SingleCommitDto getCommit(@RequestParam String sha) {
+//
+//  }
 }

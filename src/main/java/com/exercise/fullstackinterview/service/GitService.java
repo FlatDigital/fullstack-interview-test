@@ -41,6 +41,10 @@ public class GitService {
 
     return commits;
   }
+//
+//  public SingleCommitDto getCommit(String sha) {
+//    return gitWebClient.getCommit(sha).map(response -> )
+//  }
 
   private void getCommitResponse(CommitResponse commitResponse, List<CommitDto> commits,
       String token) {

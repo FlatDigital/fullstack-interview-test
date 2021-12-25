@@ -14,13 +14,14 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CommitResponse {
 
-  public String sha;
-  public String node_id;
-  public Commit commit;
-  public String url;
-  public String html_url;
-  public String comments_url;
-  public Author author;
-  public Committer committer;
-  public List<Parent> parents;
+  private String sha;
+  private String node_id;
+  private Commit commit;
+  private String url;
+  private String html_url;
+  private String comments_url;
+  private Author author;
+  private Committer committer;
+  private List<Parent> parents;
+  private List<File> files;
 }
