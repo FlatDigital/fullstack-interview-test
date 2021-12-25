@@ -1,7 +1,7 @@
 package com.exercise.fullstackinterview.service;
 
 import com.exercise.fullstackinterview.dto.BranchDto;
-import com.exercise.fullstackinterview.dto.CommitDto;
+import com.exercise.fullstackinterview.dto.SimpleCommitDto;
 import com.exercise.fullstackinterview.mapper.ResponseMapper;
 import com.exercise.fullstackinterview.model.commit.CommitResponse;
 import com.exercise.fullstackinterview.model.commit.Parent;
@@ -32,10 +32,10 @@ public class GitService {
         .map(branch -> BranchDto.builder().name(branch.name).build());
   }
 
-  public List<CommitDto> getCommits(String branch, String token) {
+  public List<SimpleCommitDto> getCommits(String branch, String token) {
     Parent[] parents = {Parent.builder().sha(branch).build()};
 
-    List<CommitDto> commits = new ArrayList<>();
+    List<SimpleCommitDto> commits = new ArrayList<>();
     getCommitResponse(CommitResponse.builder().parents(Arrays.asList(parents)).build(), commits,
         token);
 
@@ -46,7 +46,7 @@ public class GitService {
 //    return gitWebClient.getCommit(sha).map(response -> )
 //  }
 
-  private void getCommitResponse(CommitResponse commitResponse, List<CommitDto> commits,
+  private void getCommitResponse(CommitResponse commitResponse, List<SimpleCommitDto> commits,
       String token) {
     if (commitResponse.getParents().isEmpty()) {
       return;
@@ -63,7 +63,7 @@ public class GitService {
         url.concat(commitResponse.getParents().get(0).getSha()), HttpMethod.GET, entity,
         CommitResponse.class).getBody();
 
-    commits.add(responseMapper.commitToDto(response));
+    commits.add(responseMapper.commitToSimple(response));
 
     getCommitResponse(Objects.requireNonNull(response), commits, token);
   }

@@ -17,5 +17,5 @@ public class SimpleCommitDto {
   private String sha;
   private String message;
   private String author;
-  private ZonedDateTime date;
+  private ZonedDateTime timestamp;
 }

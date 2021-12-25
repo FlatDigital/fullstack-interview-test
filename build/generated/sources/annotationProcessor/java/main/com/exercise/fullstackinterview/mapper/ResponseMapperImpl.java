@@ -2,6 +2,8 @@ package com.exercise.fullstackinterview.mapper;
 
 import com.exercise.fullstackinterview.dto.CommitDto;
 import com.exercise.fullstackinterview.dto.CommitDto.CommitDtoBuilder;
+import com.exercise.fullstackinterview.dto.SimpleCommitDto;
+import com.exercise.fullstackinterview.dto.SimpleCommitDto.SimpleCommitDtoBuilder;
 import com.exercise.fullstackinterview.model.commit.Author;
 import com.exercise.fullstackinterview.model.commit.Commit;
 import com.exercise.fullstackinterview.model.commit.CommitResponse;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-25T10:46:06-0500",
+    date = "2021-12-25T10:51:30-0500",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.3.2.jar, environment: Java 11.0.8 (Oracle Corporation)"
 )
 @Component
@@ -33,6 +35,22 @@ public class ResponseMapperImpl implements ResponseMapper {
         commitDto.filesChanged( ResponseMapper.numberOfFiles( response.getFiles() ) );
 
         return commitDto.build();
+    }
+
+    @Override
+    public SimpleCommitDto commitToSimple(CommitResponse commitResponse) {
+        if ( commitResponse == null ) {
+            return null;
+        }
+
+        SimpleCommitDtoBuilder simpleCommitDto = SimpleCommitDto.builder();
+
+        simpleCommitDto.sha( commitResponse.getSha() );
+        simpleCommitDto.message( responseCommitMessage( commitResponse ) );
+        simpleCommitDto.author( responseCommitAuthorName( commitResponse ) );
+        simpleCommitDto.timestamp( responseCommitAuthorDate( commitResponse ) );
+
+        return simpleCommitDto.build();
     }
 
     private String responseCommitMessage(CommitResponse commitResponse) {
