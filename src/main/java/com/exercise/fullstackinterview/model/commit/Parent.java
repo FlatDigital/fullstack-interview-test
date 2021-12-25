@@ -13,15 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Parent {
 
-  public String sha;
-  public String url;
-  public String html_url;
-
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
+  private String sha;
+  private String url;
+  private String html_url;
 }
