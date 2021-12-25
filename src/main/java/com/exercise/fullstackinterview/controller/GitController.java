@@ -1,6 +1,7 @@
 package com.exercise.fullstackinterview.controller;
 
 import com.exercise.fullstackinterview.model.branches.Branch;
+import com.exercise.fullstackinterview.model.commit.CommitResponse;
 import com.exercise.fullstackinterview.service.GitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,5 +24,12 @@ public class GitController {
   @ResponseStatus(HttpStatus.OK)
   public Flux<Branch> getBranches() {
     return gitService.getBranches();
+  }
+
+  @GetMapping("/commits")
+  @ResponseBody
+  @ResponseStatus(HttpStatus.OK)
+  public Flux<CommitResponse> getCommits() {
+    return gitService.getCommits();
   }
 }

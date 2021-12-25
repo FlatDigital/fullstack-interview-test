@@ -1,12 +1,14 @@
 package com.exercise.fullstackinterview.webclient;
 
 import com.exercise.fullstackinterview.model.branches.Branch;
+import com.exercise.fullstackinterview.model.commit.CommitResponse;
 import com.exercise.fullstackinterview.model.error.GitError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClient.RequestBodySpec;
+import org.springframework.web.reactive.function.client.WebClient.ResponseSpec;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -30,12 +32,22 @@ public class GitWebClient {
         .uri(uriBuilder -> uriBuilder.path(uri).build());
   }
 
-  public Flux<Branch> requestUserCreation(String uri) {
+  public Flux<Branch> getBranches() {
+    return get("/branches")
+        .bodyToFlux(Branch.class);
+  }
+
+  public Flux<CommitResponse> getCommits() {
+    return get("/commits")
+        .bodyToFlux(CommitResponse.class);
+  }
+
+  private ResponseSpec get(String uri) {
     return setUpGetWebClient(uri)
         .retrieve()
         .onStatus(HttpStatus::isError, clientResponse -> clientResponse.bodyToMono(GitError.class)
             .flatMap(errorBody ->
-                Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST))))
-        .bodyToFlux(Branch.class);
+                Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST)))
+        );
   }
 }
