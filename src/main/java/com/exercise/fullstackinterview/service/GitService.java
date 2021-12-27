@@ -1,6 +1,7 @@
 package com.exercise.fullstackinterview.service;
 
 import com.exercise.fullstackinterview.dto.BranchDto;
+import com.exercise.fullstackinterview.dto.CommitDto;
 import com.exercise.fullstackinterview.dto.SimpleCommitDto;
 import com.exercise.fullstackinterview.mapper.ResponseMapper;
 import com.exercise.fullstackinterview.model.commit.CommitResponse;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class GitService {
@@ -41,10 +43,10 @@ public class GitService {
 
     return commits;
   }
-//
-//  public SingleCommitDto getCommit(String sha) {
-//    return gitWebClient.getCommit(sha).map(response -> )
-//  }
+
+  public Mono<CommitDto> getCommit(String sha) {
+    return gitWebClient.getCommit(sha).map(response -> responseMapper.commitToDto(response));
+  }
 
   private void getCommitResponse(CommitResponse commitResponse, List<SimpleCommitDto> commits,
       String token) {

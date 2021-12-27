@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-25T10:51:30-0500",
+    date = "2021-12-25T10:54:01-0500",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.3.2.jar, environment: Java 11.0.8 (Oracle Corporation)"
 )
 @Component
@@ -27,7 +27,6 @@ public class ResponseMapperImpl implements ResponseMapper {
 
         CommitDtoBuilder commitDto = CommitDto.builder();
 
-        commitDto.sha( response.getSha() );
         commitDto.message( responseCommitMessage( response ) );
         commitDto.author( responseCommitAuthorName( response ) );
         commitDto.timestamp( responseCommitAuthorDate( response ) );
