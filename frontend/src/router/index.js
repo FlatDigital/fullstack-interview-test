@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import BranchesView from "@/views/BranchesView";
+import BranchView from "@/views/BranchDetailView";
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ const routes = [
     name: 'Branches',
     component: BranchesView
   },
+  {
+    path: '/branch',
+    name: 'Branch',
+    component: BranchView
+  }
 ]
 
 const router = new VueRouter({
