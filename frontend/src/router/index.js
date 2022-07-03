@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/branches',
     name: 'Branches',
     component: BranchesView
   },
