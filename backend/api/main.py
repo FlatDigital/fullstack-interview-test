@@ -43,14 +43,17 @@ def get_commits():
     return jsonify(commits_dict)
 
 
-@main_blueprint.route('/get_commit/<commit_sha>', methods=['GET'])
-def get_commit(commit_sha):
+@main_blueprint.route('/get_commit/', methods=['GET'])
+def get_commit():
+    commit_sha = request.headers.get('commit_sha')
     commit = repo.get_commit(commit_sha)
+    files = [commit.files[i].filename for i in range(len(commit.files))]
     return jsonify({'sha': commit.sha, 'message': commit.commit.message, 'author': commit.commit.author.name,
-                    'date': commit.commit.author.date, 'changed_files': commit.files.count(),
-                    'additions': commit.stats.additions, 'deletions': commit.stats.deletions,
+                    'date': commit.commit.author.date, 'additions': commit.stats.additions,
+                    'number_of_changed_files': len(files),
+                    'deletions': commit.stats.deletions,
                     'author_email': commit.commit.author.email,
-                    'files': [commit.files[i].filename for i in range(len(commit.files))]})
+                    'files': files})
 
 
 @main_blueprint.route('/get_branch/', methods=['GET'])
