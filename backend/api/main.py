@@ -6,7 +6,7 @@ from dotenv import dotenv_values
 
 main_blueprint = Blueprint('main', __name__)
 g = Github(dotenv_values().get('GITHUB_TOKEN'))
-repo = g.get_repo('sanchezpili6/fullstack-interview-test')
+repo = g.get_repo(dotenv_values().get('GITHUB_REPO'))
 default_branch_date = repo.get_branch("master").commit.commit.author.date.strftime('%Y-%m-%d %H:%M:%S')
 branches = list(repo.get_branches())
 
@@ -75,7 +75,8 @@ def get_open_pull_requests():
     pull_requests_dict = []
     for pull_request in pull_requests:
         pull_requests_dict.append({'number': pull_request.number, 'title': pull_request.title,
-                                   'author': pull_request.user.login, 'date': pull_request.created_at})
+                                   'author': pull_request.user.login, 'date': pull_request.created_at,
+                                   'status': pull_request.state})
     return jsonify(pull_requests_dict)
 
 
@@ -85,5 +86,34 @@ def get_closed_pull_requests():
     pull_requests_dict = []
     for pull_request in pull_requests:
         pull_requests_dict.append({'number': pull_request.number, 'title': pull_request.title,
-                                   'author': pull_request.user.login, 'date': pull_request.created_at})
+                                   'author': pull_request.user.login, 'date': pull_request.created_at,
+                                   'status': pull_request.state})
     return jsonify(pull_requests_dict)
+
+
+@main_blueprint.route('/get_pull_request/', methods=['GET'])
+def get_pull_request():
+    pull_request_number = request.headers.get('pull_request_number')
+    pull_request = repo.get_pull(int(pull_request_number))
+    return jsonify({'number': pull_request.number, 'title': pull_request.title,
+                    'author': pull_request.user.login, 'date': pull_request.created_at,
+                    'status': pull_request.state, 'body': pull_request.body, 'merged': pull_request.merged})
+
+
+@main_blueprint.route('/close_pull_request/', methods=['POST'])
+def close_pull_request():
+    pull_request_number = request.headers.get('pull_request_number')
+    pull_request = repo.get_pull(int(pull_request_number))
+    pull_request.merge()
+    return jsonify({'status': 'success'})
+
+
+@main_blueprint.route('/create_pull_request/', methods=['POST'])
+def create_pull_request():
+    pull_request_title = request.headers.get('pull_request_title')
+    pull_request_body = request.headers.get('pull_request_body')
+    pull_request_branch = request.headers.get('pull_request_branch')
+    pull_request = repo.create_pull(title=pull_request_title, body=pull_request_body, base=pull_request_branch)
+    return jsonify({'number': pull_request.number, 'title': pull_request.title,
+                    'author': pull_request.user.login, 'date': pull_request.created_at,
+                    'status': pull_request.state, 'body': pull_request.body, 'merged': pull_request.merged})

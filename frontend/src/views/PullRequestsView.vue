@@ -54,17 +54,24 @@
         </v-card>
       </v-tab-item>
     </v-tabs>
+    <v-overlay v-model="showModal">
+      <PullRequestDetailsModal :pull_request_number="selectedPR" v-on:showModal="getMessageFromChild"></PullRequestDetailsModal>
+    </v-overlay>
   </v-card>
 </template>
 
 <script>
 import {get_open_pull_requests} from "@/helpers/Services";
 import {get_closed_pull_requests} from "@/helpers/Services";
+import PullRequestDetailsModal from "@/components/PullRequestDetailsModal";
 export default {
   name: "PullRequestsView.vue",
   mounted() {
     this.getOpenPullRequests()
     this.getClosedPullRequests()
+  },
+  components: {
+    PullRequestDetailsModal
   },
   data () {
     return {
@@ -73,10 +80,13 @@ export default {
         {text: 'Title', value: 'title'},
         { text: 'Author', value: 'author'},
         { text: 'PR number',  value: 'number' },
-        { text: 'Date', value: 'date'}
+        { text: 'Date', value: 'date'},
+        { text: 'Status', value: 'status'}
       ],
       openPullRequests: [],
       closedPullRequests: [],
+      showModal: false,
+      selectedPR: 0
     }
   },
   methods:{
@@ -87,8 +97,11 @@ export default {
       this.closedPullRequests = await get_closed_pull_requests()
     },
     handleClick(e) {
-      this.$router.replace('/pull-request/?name=' + e.name);
-      this.$emit('childToParent', e.name)
+      this.selectedPR = e.number
+      this.showModal = true
+    },
+    getMessageFromChild( message ) {
+      this.showModal = message
     }
   },
 }

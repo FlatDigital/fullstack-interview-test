@@ -29,11 +29,17 @@ const get_closed_pull_requests = async () => {
     const response = await Apis.get(`/get_closed_pull_requests`);
     return response.data;
 }
+
+const get_pull_request = async (pull_request_number) => {
+    const response = await Apis.get(`/get_pull_request/`, {headers: {'pull_request_number': pull_request_number}});
+    return response.data;
+}
 export {
     get_branches,
     get_branch,
     get_commits,
     get_commit,
     get_open_pull_requests,
-    get_closed_pull_requests
+    get_closed_pull_requests,
+    get_pull_request
 }
