@@ -35,8 +35,7 @@ export default {
       headers: [
         { text: 'Name', align: 'start', value: 'name'},
         { text: 'Status',  value: 'status' },
-        { text: 'Last updated', value: 'date'},
-        {text: 'Total Commits', value: 'total_commits'},
+        { text: 'Last updated', value: 'date'}
       ],
       branches: [],
     }

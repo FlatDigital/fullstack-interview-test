@@ -6,12 +6,12 @@ const get_branches = async () => {
 }
 
 const get_branch = async (branch_name) => {
-    const response = await Apis.get(`/get_branch/${branch_name}`);
+    const response = await Apis.get(`/get_branch/`, {headers: {'branch_name': branch_name}});
     return response.data;
 }
 
 const get_commits = async (branch_name) => {
-    const response = await Apis.get(`/get_commits/${branch_name}`);
+    const response = await Apis.get(`/get_commits/`, {headers: {'branch_name': branch_name}});
     return response.data;
 }
 export {
