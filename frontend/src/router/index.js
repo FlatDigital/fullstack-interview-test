@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import BranchesView from "@/views/BranchesView";
 import BranchView from "@/views/BranchDetailView";
+import PullRequestsView from "@/views/PullRequestsView";
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/branch',
     name: 'Branch',
     component: BranchView
+  },
+  {
+    path: '/pull-requests',
+    name: 'Pull Requests',
+    component: PullRequestsView
   }
 ]
 

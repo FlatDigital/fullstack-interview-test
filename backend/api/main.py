@@ -67,3 +67,23 @@ def get_branch():
     return jsonify({'name': branch.name, 'total_commits': branch.commit.stats.total,
                     'date': short_date,
                     'status': status})
+
+
+@main_blueprint.route('/get_open_pull_requests/', methods=['GET'])
+def get_open_pull_requests():
+    pull_requests = list(repo.get_pulls())
+    pull_requests_dict = []
+    for pull_request in pull_requests:
+        pull_requests_dict.append({'number': pull_request.number, 'title': pull_request.title,
+                                   'author': pull_request.user.login, 'date': pull_request.created_at})
+    return jsonify(pull_requests_dict)
+
+
+@main_blueprint.route('/get_closed_pull_requests/', methods=['GET'])
+def get_closed_pull_requests():
+    pull_requests = list(repo.get_pulls(state='closed'))
+    pull_requests_dict = []
+    for pull_request in pull_requests:
+        pull_requests_dict.append({'number': pull_request.number, 'title': pull_request.title,
+                                   'author': pull_request.user.login, 'date': pull_request.created_at})
+    return jsonify(pull_requests_dict)

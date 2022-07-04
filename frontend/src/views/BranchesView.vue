@@ -17,6 +17,7 @@
           :search="search"
           class="branches-table"
           @click:row="handleClick"
+          hide-default-footer
       ></v-data-table>
     </v-card>
   </div>
