@@ -16,6 +16,7 @@
           :items="branches"
           :search="search"
           class="branches-table"
+          @click:row="handleClick"
       ></v-data-table>
     </v-card>
   </div>
@@ -34,8 +35,7 @@ export default {
       headers: [
         { text: 'Name', align: 'start', value: 'name'},
         { text: 'Status',  value: 'status' },
-        { text: 'Last updated', value: 'date'},
-        {text: 'Total Commits', value: 'total_commits'}
+        { text: 'Last updated', value: 'date'}
       ],
       branches: [],
     }
@@ -44,6 +44,10 @@ export default {
     async getBranches(){
       this.branches = await get_branches()
       console.log(this.branches)
+    },
+    handleClick(e) {
+      this.$router.replace('/branch/?name=' + e.name);
+      this.$emit('childToParent', e.name)
     }
   }
 }

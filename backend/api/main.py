@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask import jsonify
+from flask import request
 from github import Github
 from dotenv import dotenv_values
 
@@ -27,13 +28,34 @@ def get_branches():
         short_date = date.strftime('%Y-%m-%d')
         date = date.strftime('%Y-%m-%d %H:%M:%S')
         status = get_status(date)
-        branches_names.append({'name': branch.name, 'total_commits': branch.commit.stats.total,
-                               'date': short_date, 'status': status})
+        branches_names.append({'name': branch.name, 'date': short_date, 'status': status})
     return jsonify(branches_names)
 
 
-@main_blueprint.route('/get_branch/<branch_name>', methods=['GET'])
-def get_branch(branch_name):
+@main_blueprint.route('/get_commits/', methods=['GET'])
+def get_commits():
+    branch_name = request.headers.get('branch_name')
+    commits_list = list(repo.get_commits(branch_name))
+    commits_dict = []
+    for commit in commits_list:
+        commits_dict.append({'sha': commit.sha, 'message': commit.commit.message,
+                             'author': commit.commit.author.name, 'date': commit.commit.author.date})
+    return jsonify(commits_dict)
+
+
+@main_blueprint.route('/get_commit/<commit_sha>', methods=['GET'])
+def get_commit(commit_sha):
+    commit = repo.get_commit(commit_sha)
+    return jsonify({'sha': commit.sha, 'message': commit.commit.message, 'author': commit.commit.author.name,
+                    'date': commit.commit.author.date, 'changed_files': commit.files.count(),
+                    'additions': commit.stats.additions, 'deletions': commit.stats.deletions,
+                    'author_email': commit.commit.author.email,
+                    'files': [commit.files[i].filename for i in range(len(commit.files))]})
+
+
+@main_blueprint.route('/get_branch/', methods=['GET'])
+def get_branch():
+    branch_name = request.headers.get('branch_name')
     branch = repo.get_branch(branch_name)
     date = branch.commit.commit.committer.date
     short_date = date.strftime('%Y-%m-%d')
