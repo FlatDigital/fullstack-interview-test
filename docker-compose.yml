@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: ./server
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./server:/server
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
+      - GH_BASIC_CLIENT_ID=7c78e19a56a1676f2abe
+      - GH_BASIC_SECRET_ID=a421340f257b9a2b8a4954826303c20e67b62a2f
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=changeme
+
+  client:
+    build:
+      context: ./client
+    volumes:
+      - './client:/client'
+      - '/client/node_modules'
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - server
+    command: >
+      sh -c "npm start"
+
+
+volumes:
+  dev-db-data:
