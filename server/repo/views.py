@@ -20,7 +20,7 @@ from repo.serializers import (
     PullRequestSerializer
 )
 
-from git import Repo as GitRepo
+from git import Repo as GitRepo, remote
 
 
 def get_repo_instance(name, link):
@@ -50,6 +50,8 @@ class RepoViewSet(ModelViewSet):
         repo=Repo.objects.filter(pk=pk)
         if repo.exists():
             repo_instance = get_repo_instance(repo[0].name, repo[0].link)
+            git_remote = remote.Remote(repo_instance, repo[0].link)
+            git_remote.pull('refs/heads/master:refs/heads/origin')
             print(repo_instance.branches)
 
         return super().retrieve(self,request, pk)
